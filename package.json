@@ -1,0 +1,46 @@
+{
+  "name": "@deadlock/notifier",
+  "version": "0.1.0",
+  "description": "Notifier",
+  "author": "roks0n",
+  "license": "MIT",
+  "keywords": [
+    "core",
+    "blockchain",
+    "ark",
+    "crypto",
+    "dpos",
+    "logging",
+    "http",
+    "requests"
+  ],
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deadlock-delegate/deadlock-notifier.git"
+  },
+  "bugs": {
+    "url": "https://github.com/deadlock-delegate/deadlock-notifier/issues"
+  },
+  "homepage": "https://github.com/deadlock-delegate/deadlock-notifier",
+  "scripts": {
+    "test": "ARK_ENV=test jest --runInBand --forceExit",
+    "lint": "eslint ./ --fix"
+  },
+  "dependencies": {
+    "@arkecosystem/core-container": "^0.2.0",
+    "axios": "^0.18.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "husky": "^0.14.3",
+    "jest": "^22.4.3",
+    "jest-extended": "^0.7.1",
+    "standard": "^11.0.1"
+  }
+}
