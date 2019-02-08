@@ -30,7 +30,7 @@ module.exports = {
   ...
   '@deadlock/notifier': {
     enabled: true,
-    {
+    webhooks: [{
       endpoint: 'https://discordapp.com/api/webhooks/612412465124612462/A1Ag12F&ijafa-3mtASA121mja',
       payload: {
         msg: 'content'
@@ -42,7 +42,7 @@ module.exports = {
         msg: 'text'
       },
       events: ['wallet.vote', 'wallet.unvote', 'forger.missing']
-    }
+    }]
   }
 }
 ```
@@ -52,13 +52,13 @@ module.exports = {
 ```js
 {
   enabled: true,  // true/false if you want to enable/disable the plugin
-  {
+  webhooks: [{
     endpoint: 'webhook endpoint url',
     payload: {
       msg: 'name of the message field eg. discord has "content", slack has "text"'
     },
     events: ['list of events you want to subscribe to']
-  }
+  }]
 }
 ```
 
