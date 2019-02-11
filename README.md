@@ -15,7 +15,7 @@ lerna bootstrap
 
 ### Registration
 
-Open `~/.ark/config/plugins.js` and add the following at the end (it has to be bellow p2p and api).
+Open `~/.config/ark-core/{mainnet|devnet|testnet}/plugins.js` and add the following at the end (it has to be bellow p2p and api).
 
 ```js
 '@deadlock/notifier': {}
@@ -86,7 +86,7 @@ Handlers for unticked events haven't been implemented yet. Feel free to make a c
 ## Credits
 
 - [roks0n](https://github.com/roks0n)
-- [All Contributors](../../../../contributors)
+- [All Contributors](../../contributors)
 
 ## License
 
