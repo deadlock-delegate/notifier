@@ -5,7 +5,11 @@ Discord, send Emails/SMS or use whichever service that supports webhooks.
 
 ## Installation
 
-### Clone
+#### For production:
+
+`yarn add global @deadlock-delegate/notifier`
+
+#### For development:
 
 ```bash
 cd ~/ark-core/plugins

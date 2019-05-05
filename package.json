@@ -1,7 +1,7 @@
 {
-  "name": "@deadlock/notifier",
-  "version": "0.1.0",
-  "description": "Notifier",
+  "name": "@deadlock-delegate/notifier",
+  "version": "1.0.0",
+  "description": "Plugin that allows you to subscribe and be notified about any events ",
   "author": "roks0n",
   "license": "MIT",
   "keywords": [
@@ -17,18 +17,18 @@
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/deadlock-delegate/deadlock-notifier.git"
+    "url": "git+https://github.com/deadlock-delegate/notifier.git"
   },
   "bugs": {
-    "url": "https://github.com/deadlock-delegate/deadlock-notifier/issues"
+    "url": "https://github.com/deadlock-delegate/notifier/issues"
   },
-  "homepage": "https://github.com/deadlock-delegate/deadlock-notifier",
+  "homepage": "https://github.com/deadlock-delegate/notifier",
   "scripts": {
     "test": "ARK_ENV=test jest --runInBand --forceExit",
     "lint": "eslint ./ --fix"
   },
   "dependencies": {
-    "@arkecosystem/core-container": "^2.2.2",
+    "@arkecosystem/core-container": "^2.3.22",
     "axios": "^0.18.0"
   },
   "devDependencies": {
@@ -42,5 +42,8 @@
     "jest": "^22.4.3",
     "jest-extended": "^0.7.1",
     "standard": "^11.0.1"
+  },
+  "directories": {
+    "lib": "lib"
   }
 }
