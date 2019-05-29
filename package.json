@@ -1,6 +1,6 @@
 {
   "name": "@deadlock-delegate/notifier",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Plugin that allows you to subscribe and be notified about any events ",
   "author": "roks0n",
   "license": "MIT",
@@ -28,7 +28,7 @@
     "lint": "eslint ./ --fix"
   },
   "dependencies": {
-    "@arkecosystem/core-container": "^2.3.22",
+    "@arkecosystem/core-container": "^2.3.23",
     "axios": "^0.18.0"
   },
   "devDependencies": {
