@@ -7,7 +7,7 @@ Discord, send Emails/SMS or use whichever service that supports webhooks.
 
 #### For production:
 
-`yarn add global @deadlock-delegate/notifier`
+`yarn global add @deadlock-delegate/notifier`
 
 #### For development:
 
