@@ -3,6 +3,14 @@
 This plugin calls webhooks when a certain events occurs. You can use it to post alerts on Slack,
 Discord, send Emails/SMS or use whichever service that supports webhooks.
 
+#### ❤️ Support maintenance and development of plugins
+If you find this or other plugins useful please consider
+
+- voting for `deadlock` delegate
+- donating to `AWtgFYbvtLDYccJvC5MChk4dpiUy2Krt2U`
+
+to support development new plugins and tools for Ark's Ecosystem and maintenance of existing ones. Full list of contributions can be found on [https://arkdelegatesio/delegate/deadlock/](https://arkdelegates.io/delegate/deadlock/contributions/). 🖖
+
 ## Installation
 
 #### For production:
