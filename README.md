@@ -47,13 +47,22 @@ module.exports = {
       payload: {
         msg: 'content'
       },
-      events: ['wallet.vote', 'wallet.unvote', 'forger.missing']
+      events: ['wallet.vote', 'wallet.unvote', 'forger.missing', 'forger.failed']
     }, {
       endpoint: 'https://hooks.slack.com/services/T1212ASDA/BAEWAS12/ASxASJL901ajkS',
       payload: {
         msg: 'text'
       },
-      events: ['wallet.vote', 'wallet.unvote', 'forger.missing']
+      events: ['wallet.vote', 'wallet.unvote', 'forger.missing', 'forger.failed']
+    },
+    {
+      endpoint: 'https://api.pushover.net/',
+      payload: {
+        msg: 'message',
+        user: '<pushover user key>',
+        token: '<pushover token>'
+      },
+      events: ['wallet.vote', 'wallet.unvote', 'forger.missing', 'forger.failed']
     }]
   }
 }
@@ -81,7 +90,7 @@ Handlers for unticked events haven't been implemented yet. Feel free to make a c
 - [x] wallet.vote
 - [x] wallet.unvote
 - [x] forger.missing
-- [ ] forger.failed
+- [x] forger.failed
 - [ ] forger.started
 - [ ] block.applied
 - [ ] block.forged
