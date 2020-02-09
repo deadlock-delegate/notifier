@@ -47,13 +47,22 @@ module.exports = {
       payload: {
         msg: 'content'
       },
-      events: ['wallet.vote', 'wallet.unvote', 'forger.missing']
+      events: ['wallet.vote', 'wallet.unvote', 'forger.missing', 'forger.failed']
     }, {
       endpoint: 'https://hooks.slack.com/services/T1212ASDA/BAEWAS12/ASxASJL901ajkS',
       payload: {
         msg: 'text'
       },
-      events: ['wallet.vote', 'wallet.unvote', 'forger.missing']
+      events: ['wallet.vote', 'wallet.unvote', 'forger.missing', 'forger.failed']
+    },
+    {
+      endpoint: 'https://api.pushover.net/',
+      payload: {
+        msg: 'message',
+        user: '<pushover user key>',
+        token: '<pushover token>'
+      },
+      events: ['forger.missing', 'forger.failed']
     }]
   }
 }
@@ -80,11 +89,11 @@ Handlers for unticked events haven't been implemented yet. Feel free to make a c
 
 - [x] wallet.vote
 - [x] wallet.unvote
-- [x] forger.missing
-- [ ] forger.failed
-- [ ] forger.started
+- [x] forger.missing - when a delegate fails to forge in a round (could be any delegate)
+- [x] forger.failed - if your forger process fails to forge (only works if a plugin is running on a node with a forging process running)
+- [x] forger.started - when your forging process starts
 - [ ] block.applied
-- [ ] block.forged
+- [x] block.forged - when your forging process forges a new block
 - [ ] block.reverted
 - [ ] delegate.registered
 - [ ] delegate.resigned
