@@ -103,6 +103,7 @@ Handlers for unticked events haven't been implemented yet. Feel free to make a c
 - [ ] transaction.expired
 - [ ] transaction.forged
 - [ ] transaction.reverted
+- [x] activedelegateschanged - when active delegates change (voted out/in) (note: this is a custom event and does not existing in `core`!)
 
 ## Credits
 
