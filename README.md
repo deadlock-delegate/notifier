@@ -108,8 +108,9 @@ Handlers for unticked events haven't been implemented yet. Feel free to make a c
 ## Credits
 
 - [roks0n](https://github.com/roks0n)
+- [console](https://github.com/c0nsol3/)
 - [All Contributors](../../contributors)
 
 ## License
 
-[MIT](LICENSE) © roks0n
+[MIT](LICENSE) © deadlock delegate
