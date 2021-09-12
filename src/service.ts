@@ -82,6 +82,8 @@ export default class Service {
     }
 
     private async getActiveDelegates() {
+        // im not sure why I need to use triggers, but trying to inject dposState and calling
+        // getActiveDelegates method from there didn't work
         const activeDelegates: Contracts.State.Wallet[] | undefined = await this.triggers.call(
             "getActiveDelegates",
             {},
