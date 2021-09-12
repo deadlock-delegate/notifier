@@ -22,11 +22,12 @@ todo
 todo
 
 ### Registration
+todo
 
 Open `~/.config/ark-core/{mainnet|devnet|testnet}/plugins.js` and add the following at the end (it has to be bellow p2p and api).
 
 ```js
-'@deadlock/notifier': {}
+'@deadlock-delegate/notifier': {}
 ```
 
 like so:
@@ -36,7 +37,7 @@ module.exports = {
   '@arkecosystem/core-event-emitter': {},
   '@arkecosystem/core-config': {},
   ...
-  '@deadlock/notifier': {
+  '@deadlock-delegate/notifier': {
     enabled: true,
     webhooks: [{
       endpoint: 'https://discordapp.com/api/webhooks/612412465124612462/A1Ag12F&ijafa-3mtASA121mja',
