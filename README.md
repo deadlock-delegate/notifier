@@ -15,15 +15,11 @@ to support development new plugins and tools for Ark's Ecosystem and maintenance
 
 #### For production:
 
-`yarn global add @deadlock-delegate/notifier`
+todo
 
 #### For development:
 
-```bash
-cd ~/ark-core/plugins
-git clone https://github.com/deadlock-delegate/notifier
-lerna bootstrap
-```
+todo
 
 ### Registration
 
