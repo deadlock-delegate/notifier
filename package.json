@@ -1,8 +1,8 @@
 {
   "name": "@deadlock-delegate/notifier",
-  "version": "1.1.26",
-  "description": "Plugin that allows you to subscribe and be notified about any events ",
-  "author": "console",
+  "version": "2.0.0",
+  "description": "Allows you to subscribe and be notified about core events ",
+  "author": "deadock",
   "license": "MIT",
   "keywords": [
     "core",
@@ -14,7 +14,7 @@
     "http",
     "requests"
   ],
-  "main": "lib/index.js",
+  "main": "dist/service-provider.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/deadlock-delegate/notifier.git"
@@ -23,24 +23,17 @@
     "url": "https://github.com/deadlock-delegate/notifier/issues"
   },
   "homepage": "https://github.com/deadlock-delegate/notifier",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "ARK_ENV=test jest --runInBand --forceExit",
-    "lint": "eslint ./ --fix"
+    "compile": "../../node_modules/typescript/bin/tsc",
+    "build": "yarn clean && yarn compile",
+    "clean": "del dist"
   },
   "dependencies": {
-    "axios": "^0.20.0"
-  },
-  "devDependencies": {
-    "eslint": "^7.11.0",
-    "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "husky": "^4.3.0",
-    "standard": "^14.3.4"
-  },
-  "directories": {
-    "lib": "lib"
+    "@arkecosystem/core-kernel": "3.0.0-next.35",
+    "@types/node": "^16.9.1",
+    "axios": "^0.21.4"
   }
 }
