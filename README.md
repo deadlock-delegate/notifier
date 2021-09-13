@@ -9,74 +9,77 @@ If you find this or other plugins useful please consider
 - voting for `deadlock` delegate
 - donating to `AWtgFYbvtLDYccJvC5MChk4dpiUy2Krt2U`
 
-to support development new plugins and tools for Ark's Ecosystem and maintenance of existing ones. Full list of contributions can be found on [https://arkdelegatesio/delegate/deadlock/](https://arkdelegates.io/delegate/deadlock/contributions/). 🖖
+to support development new plugins and tools for Ark's Ecosystem and maintenance of existing ones. Full list of contributions can be found on [https://arkdelegates.live/delegate/deadlock/](https://arkdelegates.live/delegate/deadlock/contributions/). 🖖
 
 ## Installation
 
-#### For production:
+### Adding plugin to config
 
-todo
+Before restarting your core service, you need to add the plugin into the `core.plugins` or `core.relay` section of `app.json` file:
 
-#### For development:
-
-todo
-
-### Registration
-todo
-
-Open `~/.config/ark-core/{mainnet|devnet|testnet}/plugins.js` and add the following at the end (it has to be bellow p2p and api).
-
-```js
-'@deadlock-delegate/notifier': {}
-```
-
-like so:
-
-```js
-module.exports = {
-  '@arkecosystem/core-event-emitter': {},
-  '@arkecosystem/core-config': {},
-  ...
-  '@deadlock-delegate/notifier': {
-    enabled: true,
-    webhooks: [{
-      endpoint: 'https://discordapp.com/api/webhooks/612412465124612462/A1Ag12F&ijafa-3mtASA121mja',
-      payload: {
-        msg: 'content'
-      },
-      events: ['wallet.vote', 'wallet.unvote', 'forger.missing', 'forger.failed']
-    }, {
-      endpoint: 'https://hooks.slack.com/services/T1212ASDA/BAEWAS12/ASxASJL901ajkS',
-      payload: {
-        msg: 'text'
-      },
-      events: ['wallet.vote', 'wallet.unvote', 'forger.missing', 'forger.failed']
-    },
-    {
-      endpoint: 'https://api.pushover.net/',
-      payload: {
-        msg: 'message',
-        user: '<pushover user key>',
-        token: '<pushover token>'
-      },
-      events: ['forger.missing', 'forger.failed']
-    }]
-  }
+```json
+{
+    "package": "@deadlock-delegate/notifier",
+    "options": {
+        "enabled": true,
+        "webhooks": [{
+          "endpoint": "https://discordapp.com/api/webhooks/612412465124612462/A1Ag12F&ijafa-3mtASA121mja",
+          "payload": {
+            "msg": "content"
+          },
+          "events": ["wallet.vote", "wallet.unvote", "forger.missing", "forger.failed"]
+        }, {
+          "endpoint": "https://hooks.slack.com/services/T1212ASDA/BAEWAS12/ASxASJL901ajkS",
+          "payload": {
+            "msg": "text"
+          },
+          "events": ["wallet.vote", "wallet.unvote", "forger.missing", "forger.failed"]
+        },
+        {
+          "endpoint": "https://api.pushover.net/",
+          "payload": {
+            "msg": "message",
+            "user": "<pushover user key>",
+            "token": "<pushover token>"
+          },
+          "events": ["forger.missing", "forger.failed"]
+        }]
+      }
+    }
 }
 ```
 
-### Configuration
+### For production (eg. devnet/mainnet):
 
-```js
+1. Install plugin: `yarn global add https://github.com/deadlock-delegate/notifier`
+2. Add plugin to `app.json`
+3. Start your node as you usually start it 
+
+### For development (eg. testnet):
+
+Assuming you don't run testnet locally via docker:
+
+1. Clone this plugin into `plugins/` directory of the [core](https://github.com/ArkEcosystem/core/) project
+2. Add plugin to `app.json`, for testnet the file can be found in: `core/packages/core/bin/config/testnet/app.json`
+3. Go into the plugin's directory: `cd notifier`
+4. Build plugin: `yarn build`
+5. Run `yarn full:testnet` inside `core/packages/core` directory to start testnet with notifier plugin
+
+### Configuration explanation
+
+```json
 {
-  enabled: true,  // true/false if you want to enable/disable the plugin
-  webhooks: [{
-    endpoint: 'webhook endpoint url',
-    payload: {
-      msg: 'name of the message field eg. discord has "content", slack has "text"'
-    },
-    events: ['list of events you want to subscribe to']
-  }]
+  "package": "@deadlock-delegate/notifier",
+  "options": {
+    "enabled": true,
+    "webhooks": [{
+      "endpoint": "webhook endpoint url",
+      "payload": {
+        "msg": "name of the message field eg. Discord has 'content', Slack has 'text', Pushover has 'message'"
+      },
+      "events": ["list of events you want to subscribe to"]
+    }]
+  }
 }
 ```
 

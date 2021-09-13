@@ -2,7 +2,7 @@
   "name": "@deadlock-delegate/notifier",
   "version": "2.0.0",
   "description": "Allows you to subscribe and be notified about core events ",
-  "author": "console",
+  "author": "deadock",
   "license": "MIT",
   "keywords": [
     "core",
