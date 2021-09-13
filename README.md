@@ -51,7 +51,7 @@ Before restarting your core service, you need to add the plugin into the `core.p
 
 ### For production (eg. devnet/mainnet):
 
-1. Install plugin: `yarn global add https://github.com/deadlock-delegate/notifier`
+1. Install plugin: `yarn global add @deadlock-delegate/notifier`
 2. Add plugin to `app.json`
 3. Start your node as you usually start it 
 
