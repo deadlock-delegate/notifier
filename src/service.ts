@@ -1,5 +1,5 @@
 import { Container, Contracts, Enums as AppEnums, Services, Utils as AppUtils } from "@arkecosystem/core-kernel";
-import { Interfaces, Managers, Utils as CryptoUtils } from "@arkecosystem/crypto";
+import { Interfaces, Utils as CryptoUtils } from "@arkecosystem/crypto";
 import axios from "axios";
 import os from "os";
 
@@ -36,9 +36,6 @@ let LAST_ACTIVE_DELEGATES_CACHED: string[] = [];
 
 @Container.injectable()
 export default class Service {
-    @Container.inject(Container.Identifiers.ConfigRepository)
-    private readonly configRepository!: Services.Config.ConfigRepository;
-
     @Container.inject(Container.Identifiers.EventDispatcherService)
     private readonly emitter!: Contracts.Kernel.EventDispatcher;
 
@@ -60,15 +57,6 @@ export default class Service {
     private events = {};
 
     public async listen(options: IOptions): Promise<void> {
-        const config: Interfaces.NetworkConfig = {
-            network: this.configRepository.get<Interfaces.Network>("crypto.network")!,
-            exceptions: this.configRepository.get<Interfaces.IExceptions>("crypto.exceptions")!,
-            milestones: this.configRepository.get<Array<Record<string, any>>>("crypto.milestones")!,
-            genesisBlock: this.configRepository.get<Interfaces.IBlockJson>("crypto.genesisBlock")!,
-        };
-        // set network settings so that `CryptoUtils.formatSatoshi` display correct symbol
-        Managers.configManager.setConfig(config);
-
         LAST_ACTIVE_DELEGATES_CACHED = await this.getActiveDelegates();
 
         for (const webhook of options.webhooks) {
@@ -207,7 +195,7 @@ export default class Service {
         const delPubKey = delegate.replace("+", "").replace("-", "");
         const delWallet = this.walletRepository.findByPublicKey(delPubKey);
         const voterWallet = this.walletRepository.findByPublicKey(transaction.senderPublicKey);
-        const balance = CryptoUtils.formatSatoshi(voterWallet.getBalance());
+        const balance = CryptoUtils.formatSatoshi(voterWallet.getBalance()).replace("DѦ", "ARK");
         return [voterWallet.getAddress(), delWallet.getAttribute("delegate.username"), balance, transaction.id];
     }
 
@@ -222,7 +210,7 @@ export default class Service {
         const delPubKey = delegate.replace("+", "").replace("-", "");
         const delWallet = this.walletRepository.findByPublicKey(delPubKey);
         const voterWallet = this.walletRepository.findByPublicKey(transaction.senderPublicKey);
-        const balance = CryptoUtils.formatSatoshi(voterWallet.getBalance());
+        const balance = CryptoUtils.formatSatoshi(voterWallet.getBalance()).replace("DѦ", "ARK");
         return [voterWallet.getAddress(), delWallet.getAttribute("delegate.username"), balance, transaction.id];
     }
 
