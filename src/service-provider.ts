@@ -15,7 +15,7 @@ export class ServiceProvider extends Providers.ServiceProvider {
     }
 
     public async boot(): Promise<void> {
-        const options = (this.config().all() as unknown) as IOptions;
+        const options = this.config().all() as unknown as IOptions;
         this.app.get<Service>(this.service).listen(options);
         this.logger.info("[deadlock-delegate/notifier] Plugin started");
     }
