@@ -1,5 +1,4 @@
 import { Container, Contracts, Enums as AppEnums, Services, Utils as AppUtils } from "@arkecosystem/core-kernel";
-import { ConfigRepository } from "@arkecosystem/core-kernel/src/services/config/repository";
 import { Interfaces, Managers, Utils as CryptoUtils } from "@arkecosystem/crypto";
 import axios from "axios";
 import os from "os";
@@ -38,7 +37,7 @@ let LAST_ACTIVE_DELEGATES_CACHED: string[] = [];
 @Container.injectable()
 export default class Service {
     @Container.inject(Container.Identifiers.ConfigRepository)
-    private readonly configRepository!: ConfigRepository;
+    private readonly configRepository!: Services.Config.ConfigRepository;
 
     @Container.inject(Container.Identifiers.EventDispatcherService)
     private readonly emitter!: Contracts.Kernel.EventDispatcher;
