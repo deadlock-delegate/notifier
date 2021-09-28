@@ -1,6 +1,6 @@
 import { Container, Contracts, Enums as AppEnums, Services, Utils as AppUtils } from "@arkecosystem/core-kernel";
+import { ConfigRepository } from "@arkecosystem/core-kernel/src/services/config/repository";
 import { Interfaces, Managers, Utils as CryptoUtils } from "@arkecosystem/crypto";
-import { ConfigRepository } from "@packages/core-kernel/src/services/config/repository";
 import axios from "axios";
 import os from "os";
 
