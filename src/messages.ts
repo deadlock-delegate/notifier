@@ -1,9 +1,9 @@
 export const discord = {
     "wallet.vote": (address, username, balance, txid) => {
-        return `⬆️ **${address}** voted for **${username}** with **${balance} ARK**. [Open transaction](https://explorer.ark.io/transaction/${txid})`;
+        return `⬆️ **${address}** voted for **${username}** with **${balance} ARK**. [Open transaction](<https://explorer.ark.io/transaction/${txid}>)`;
     },
     "wallet.unvote": (address, username, balance, txid) => {
-        return `⬇️ **${address}** unvoted **${username}** with **${balance} ARK**. [Open transaction](https://explorer.ark.io/transaction/${txid})`;
+        return `⬇️ **${address}** unvoted **${username}** with **${balance} ARK**. [Open transaction](<https://explorer.ark.io/transaction/${txid}>)`;
     },
     "forger.missing": (hostname, username) => {
         return `**${username}** failed to forge in this round`;

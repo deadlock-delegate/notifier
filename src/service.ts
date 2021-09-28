@@ -115,6 +115,8 @@ export default class Service {
         this.emitter.listen(event, {
             handle: async (payload: any) => {
                 let { name, data } = payload;
+                // this.logger.debug(`[deadlock-delegate/notifier] Received ${name}: ${JSON.stringify(data)}`);
+
                 const webhooks = this.events[name];
 
                 if (customEventName === "activedelegateschanged") {
