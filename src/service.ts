@@ -195,7 +195,7 @@ export default class Service {
         const delPubKey = delegate.replace("+", "").replace("-", "");
         const delWallet = this.walletRepository.findByPublicKey(delPubKey);
         const voterWallet = this.walletRepository.findByPublicKey(transaction.senderPublicKey);
-        const balance = voterWallet.getBalance(); // / 1e8).toFixed(2);
+        const balance = voterWallet.getBalance().dividedBy(1e8).toFixed();
         return [voterWallet.getAddress(), delWallet.getAttribute("delegate.username"), balance, transaction.id];
     }
 
@@ -210,7 +210,7 @@ export default class Service {
         const delPubKey = delegate.replace("+", "").replace("-", "");
         const delWallet = this.walletRepository.findByPublicKey(delPubKey);
         const voterWallet = this.walletRepository.findByPublicKey(transaction.senderPublicKey);
-        const balance = voterWallet.getBalance(); // 1e8).toFixed(2);
+        const balance = voterWallet.getBalance().dividedBy(1e8).toFixed();
         return [voterWallet.getAddress(), delWallet.getAttribute("delegate.username"), balance, transaction.id];
     }
 
