@@ -1,5 +1,5 @@
 import { Container, Contracts, Enums as AppEnums, Services, Utils as AppUtils } from "@arkecosystem/core-kernel";
-import { Interfaces } from "@arkecosystem/crypto";
+import { Interfaces, Utils as CryptoUtils } from "@arkecosystem/crypto";
 import axios from "axios";
 import os from "os";
 
@@ -195,7 +195,7 @@ export default class Service {
         const delPubKey = delegate.replace("+", "").replace("-", "");
         const delWallet = this.walletRepository.findByPublicKey(delPubKey);
         const voterWallet = this.walletRepository.findByPublicKey(transaction.senderPublicKey);
-        const balance = voterWallet.getBalance().dividedBy(1e8).toFixed();
+        const balance = CryptoUtils.formatSatoshi(voterWallet.getBalance());
         return [voterWallet.getAddress(), delWallet.getAttribute("delegate.username"), balance, transaction.id];
     }
 
@@ -210,7 +210,7 @@ export default class Service {
         const delPubKey = delegate.replace("+", "").replace("-", "");
         const delWallet = this.walletRepository.findByPublicKey(delPubKey);
         const voterWallet = this.walletRepository.findByPublicKey(transaction.senderPublicKey);
-        const balance = voterWallet.getBalance().dividedBy(1e8).toFixed();
+        const balance = CryptoUtils.formatSatoshi(voterWallet.getBalance());
         return [voterWallet.getAddress(), delWallet.getAttribute("delegate.username"), balance, transaction.id];
     }
 
