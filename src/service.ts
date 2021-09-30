@@ -215,7 +215,7 @@ export default class Service {
     }
 
     private async forgerMissing(wallet: Contracts.State.Wallet) {
-        return [os.hostname(), wallet.getAttribute("delegate.username")];
+        return [os.hostname(), wallet.getPublicKey()];
     }
 
     private async forgerFailed(error) {

@@ -20,8 +20,8 @@ export class ServiceProvider extends Providers.ServiceProvider {
         this.logger.info("[deadlock-delegate/notifier] Plugin started");
     }
 
-    public async bootWhen(serviceProvider?: string): Promise<boolean> {
-        return !!this.config().get("enabled"); // && serviceProvider === "@arkecosystem/core-blockchain";
+    public async bootWhen(): Promise<boolean> {
+        return !!this.config().get("enabled");
     }
 
     public async dispose(): Promise<void> {
