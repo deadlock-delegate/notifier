@@ -31,7 +31,7 @@ const LOG_PREFIX = "[deadlock-delegate/notifier]";
 
 const CUSTOM_EVENTS = ["activedelegateschanged"];
 const CUSTOM_EVENT_MAPPING = {
-    activedelegateschanged: AppEnums.BlockEvent.Forged, // AppEnums.RoundEvent.Created,
+    activedelegateschanged: AppEnums.BlockEvent.Applied,
 };
 
 let LAST_ACTIVE_DELEGATES_CACHED: string[] = [];
@@ -119,11 +119,11 @@ export default class Service {
                 let { name, data } = payload;
                 // this.logger.debug(`${LOG_PREFIX} Received ${name}: ${JSON.stringify(data)}`);
 
-                const webhooks = this.events[name];
-
                 if (customEventName === "activedelegateschanged") {
                     name = "activedelegateschanged";
                 }
+
+                const webhooks = this.events[name];
 
                 if (!(name in handlers)) {
                     this.logger.error(`${LOG_PREFIX} ${name} does not have a handler yet`);
@@ -219,8 +219,9 @@ export default class Service {
         return [voterWallet.getAddress(), delWallet.getAttribute("delegate.username"), balance, transaction.id];
     }
 
-    private async forgerMissing(wallet: Contracts.State.Wallet) {
-        return [os.hostname(), wallet.getPublicKey()];
+    private async forgerMissing(wallet: any) {
+        const delegateName = wallet.delegate.getAttribute("delegate.username");
+        return [os.hostname(), delegateName];
     }
 
     private async forgerFailed(error) {
