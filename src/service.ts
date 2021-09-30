@@ -27,6 +27,8 @@ const VALID_EVENTS = [
     "activedelegateschanged",
 ];
 
+const LOG_PREFIX = "[deadlock-delegate/notifier]";
+
 const CUSTOM_EVENTS = ["activedelegateschanged"];
 const CUSTOM_EVENT_MAPPING = {
     activedelegateschanged: AppEnums.BlockEvent.Forged, // AppEnums.RoundEvent.Created,
@@ -63,7 +65,7 @@ export default class Service {
             for (const event of webhook.events) {
                 if (!VALID_EVENTS.includes(event)) {
                     this.logger.warning(
-                        `[deadlock-delegate/notifier] ${event} is not a valid event. Check events in your deadlock-notifier configuration`,
+                        `${LOG_PREFIX} ${event} is not a valid event. Check events in your deadlock-notifier configuration`,
                     );
                     continue;
                 }
@@ -115,7 +117,7 @@ export default class Service {
         this.emitter.listen(event, {
             handle: async (payload: any) => {
                 let { name, data } = payload;
-                // this.logger.debug(`[deadlock-delegate/notifier] Received ${name}: ${JSON.stringify(data)}`);
+                // this.logger.debug(`${LOG_PREFIX} Received ${name}: ${JSON.stringify(data)}`);
 
                 const webhooks = this.events[name];
 
@@ -124,7 +126,7 @@ export default class Service {
                 }
 
                 if (!(name in handlers)) {
-                    this.logger.error(`[deadlock-delegate/notifier] ${name} does not have a handler yet`);
+                    this.logger.error(`${LOG_PREFIX} ${name} does not have a handler yet`);
                     return;
                 }
 
@@ -145,7 +147,7 @@ export default class Service {
                     if (platform === "pushover") {
                         if (!webhook.payload.token || !webhook.payload.user) {
                             this.logger.error(
-                                "[deadlock-delegate/notifier] Unable to setup pushover notifications. User and token params must be set",
+                                `${LOG_PREFIX} Unable to setup pushover notifications. User and token params must be set`,
                             );
                             continue;
                         }
@@ -156,9 +158,12 @@ export default class Service {
 
                 // don't care about the response msg except if there's an error
                 try {
+                    if (name === AppEnums.VoteEvent.Vote) {
+                        await AppUtils.sleep(1000);
+                    }
                     await Promise.all(requests);
                 } catch (err) {
-                    this.logger.error(`[deadlock-delegate/notifier] ${err}`);
+                    this.logger.error(`${LOG_PREFIX} ${err}`);
                 }
             },
         });
