@@ -15,7 +15,7 @@ to support development new plugins and tools for Ark's Ecosystem and maintenance
 
 ### Adding plugin to config
 
-Before restarting your core service, you need to add the plugin into the `core.plugins` or `core.relay` section of `app.json` file:
+Before restarting your process, you need to add the plugin into the very end  `core.plugins` or `relay.plugins` section of `app.json` file:
 
 ```json
 {
