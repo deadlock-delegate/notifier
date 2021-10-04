@@ -95,8 +95,8 @@ Handlers for unticked events haven't been implemented yet. Feel free to make a c
 - [ ] block.applied
 - [x] block.forged - when your forging process forges a new block
 - [ ] block.reverted
-- [ ] delegate.registered
-- [ ] delegate.resigned
+- [x] delegate.registered
+- [x] delegate.resigned
 - [ ] peer.added
 - [ ] peer.removed
 - [ ] transaction.applied

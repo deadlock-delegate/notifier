@@ -111,6 +111,8 @@ export default class Service {
             [AppEnums.ForgerEvent.Started]: this.forgerStarted,
             [AppEnums.BlockEvent.Forged]: this.blockForged,
             [AppEnums.RoundEvent.Created]: this.roundCreated,
+            [AppEnums.DelegateEvent.Registered]: this.delegateRegistered,
+            [AppEnums.DelegateEvent.Resigned]: this.delegateResigned.bind({ walletRepository: this.walletRepository }),
             activedelegateschanged: this.activeDelegatesChanged.bind({ triggers: this.triggers }),
         };
 
@@ -256,5 +258,16 @@ export default class Service {
         // cache new active delegates for the next round so we know which ones change
         LAST_ACTIVE_DELEGATES_CACHED = newActiveDelegates;
         return [newDelegates, droppedOutDelegates];
+    }
+
+    private async delegateRegistered(transaction: Interfaces.ITransactionData) {
+        return [transaction.asset?.delegate?.username];
+    }
+
+    private async delegateResigned(transaction: Interfaces.ITransactionData) {
+        const senderPublicKey = transaction.senderPublicKey;
+        if (!senderPublicKey) return null;
+        const wallet = this.walletRepository.findByPublicKey(senderPublicKey);
+        return [wallet.getAttribute("delegate.username")];
     }
 }

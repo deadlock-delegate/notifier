@@ -37,6 +37,12 @@ ${newForgingDelegates.map((delegate) => `- ${delegate}\n`).join("")}
 ${oldForgingDelegates.map((delegate) => `- ${delegate}\n`).join("")}
         `;
     },
+    "delegate.registered": (delegate: string): string => {
+        return `🆕 New delegate name registered: **${delegate}**`;
+    },
+    "delegate.resigned": (delegate: string): string => {
+        return `**${delegate}** delegate resigned`;
+    },
 };
 
 export const slack = {
@@ -71,6 +77,12 @@ ${oldActiveDelegates.map((delegate) => `- ${delegate}\n`).join("")}
 ${newActiveDelegates.map((delegate) => `- ${delegate}\n`).join("")}
         `;
     },
+    "delegate.registered": (delegate: string): string => {
+        return `🆕 New delegate name registered: *${delegate}*`;
+    },
+    "delegate.resigned": (delegate: string): string => {
+        return `*${delegate}* delegate resigned`;
+    },
 };
 
 export const fallback = {
@@ -100,5 +112,11 @@ export const fallback = {
         return `Active delegates changed: ${oldActiveDelegates.join(", ")} replaced by ${newActiveDelegates.join(
             ", ",
         )}.`;
+    },
+    "delegate.registered": (delegate: string): string => {
+        return `New delegate name registered: ${delegate}`;
+    },
+    "delegate.resigned": (delegate: string): string => {
+        return `${delegate} delegate resigned`;
     },
 };

@@ -7,7 +7,7 @@ export class ServiceProvider extends Providers.ServiceProvider {
     @Container.inject(Container.Identifiers.LogService)
     private readonly logger!: Contracts.Kernel.Logger;
 
-    private service = Symbol.for("Service<Client>");
+    private service = Symbol.for("Service<Notifier>");
 
     public async register(): Promise<void> {
         this.logger.info("[deadlock-delegate/notifier] Registering plugin");
