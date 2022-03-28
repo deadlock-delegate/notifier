@@ -1,9 +1,9 @@
 export const discord = {
-    "wallet.vote": (address, username, balance, txid) => {
-        return `⬆️ **${address}** voted for **${username}** with **${balance}**. [Open transaction](<https://explorer.ark.io/transaction/${txid}>)`;
+    "wallet.vote": (address, username, balance, txid, explorerTx) => {
+        return `⬆️ **${address}** voted for **${username}** with **${balance}**. [Open transaction](<${explorerTx}${txid}>)`;
     },
-    "wallet.unvote": (address, username, balance, txid) => {
-        return `⬇️ **${address}** unvoted **${username}** with **${balance}**. [Open transaction](<https://explorer.ark.io/transaction/${txid}>)`;
+    "wallet.unvote": (address, username, balance, txid, explorerTx) => {
+        return `⬇️ **${address}** unvoted **${username}** with **${balance}**. [Open transaction](<${explorerTx}${txid}>)`;
     },
     "forger.missing": (hostname, username) => {
         return `**${username}** failed to forge in this round`;
@@ -46,11 +46,11 @@ ${oldForgingDelegates.map((delegate) => `- ${delegate}\n`).join("")}
 };
 
 export const slack = {
-    "wallet.vote": (address, username, balance, txid) => {
-        return `⬆️ *${address}* voted for *${username}* with *${balance}*. <https://explorer.ark.io/transaction/${txid}|Open transaction>`;
+    "wallet.vote": (address, username, balance, txid, explorerTx) => {
+        return `⬆️ *${address}* voted for *${username}* with *${balance}*. <${explorerTx}${txid}|Open transaction>`;
     },
-    "wallet.unvote": (address, username, balance, txid) => {
-        return `⬇️ *${address}* unvoted *${username}* with *${balance}*. <https://explorer.ark.io/transaction/${txid}|Open transaction>`;
+    "wallet.unvote": (address, username, balance, txid, explorerTx) => {
+        return `⬇️ *${address}* unvoted *${username}* with *${balance}*. <${explorerTx}${txid}|Open transaction>`;
     },
     "forger.missing": (hostname, username) => {
         return `*${username}* failed to forge in this round`;
@@ -86,11 +86,11 @@ ${newActiveDelegates.map((delegate) => `- ${delegate}\n`).join("")}
 };
 
 export const fallback = {
-    "wallet.vote": (address, username, balance, txid) => {
-        return `⬆️ ${address} voted for ${username} with ${balance}. https://explorer.ark.io/transaction/${txid}`;
+    "wallet.vote": (address, username, balance, txid, explorerTx) => {
+        return `⬆️ ${address} voted for ${username} with ${balance}. ${explorerTx}${txid}`;
     },
-    "wallet.unvote": (address, username, balance, txid) => {
-        return `⬇️ ${address} unvoted ${username} with ${balance}. https://explorer.ark.io/transaction/${txid}`;
+    "wallet.unvote": (address, username, balance, txid, explorerTx) => {
+        return `⬇️ ${address} unvoted ${username} with ${balance}. ${explorerTx}${txid}`;
     },
     "forger.missing": (hostname, username) => {
         return `${username} failed to forge in this round`;

@@ -1,15 +1,10 @@
-# Ark Notifier Plugin
+# Notifier Plugin
 
 This plugin calls webhooks when a certain events occurs. You can use it to post alerts on Slack,
 Discord, send Emails/SMS or use whichever service that supports webhooks.
 
 #### ❤️ Support maintenance and development of plugins
-If you find this or other plugins useful please consider
-
-- voting for `deadlock` delegate
-- donating to `AWtgFYbvtLDYccJvC5MChk4dpiUy2Krt2U`
-
-to support development new plugins and tools for Ark's Ecosystem and maintenance of existing ones. Full list of contributions can be found on [https://arkdelegates.live/delegate/deadlock/](https://arkdelegates.live/delegate/deadlock/contributions/). 🖖
+If you find this or other plugins useful please consider voting for `deadlock` delegate on Solar or Ark networks.
 
 ## Installation
 
@@ -22,6 +17,7 @@ Before restarting your process, you need to add the plugin into the very end  `c
     "package": "@deadlock-delegate/notifier",
     "options": {
         "enabled": true,
+        "explorerTx": "https://explorer.ark.io/transaction/",
         "webhooks": [{
           "endpoint": "https://discordapp.com/api/webhooks/612412465124612462/A1Ag12F&ijafa-3mtASA121mja",
           "payload": {
@@ -44,18 +40,17 @@ Before restarting your process, you need to add the plugin into the very end  `c
           },
           "events": ["forger.missing", "forger.failed"]
         }]
-      }
     }
 }
 ```
 
-### For production (eg. devnet/mainnet):
+### For production (eg. mainnet/testnet/devnet):
 
-1. Install plugin: `ark plugin:install @deadlock-delegate/notifier`
+1. Install plugin: `<command> plugin:install @deadlock-delegate/notifier`, eg: `ark plugin:install @deadlock-delegate/notifier` or `solar plugin:install @deadlock-delegate/notifier`
 2. Add plugin to `app.json`
 3. Start your node as you usually start it 
 
-### For development (eg. testnet):
+### For active development:
 
 Assuming you don't run testnet locally via docker:
 
@@ -72,12 +67,13 @@ Assuming you don't run testnet locally via docker:
   "package": "@deadlock-delegate/notifier",
   "options": {
     "enabled": true,
+    "explorerTx": "https://explorer.ark.io/transaction/",
     "webhooks": [{
       "endpoint": "webhook endpoint url",
       "payload": {
         "msg": "name of the message field eg. Discord has 'content', Slack has 'text', Pushover has 'message'"
       },
-      "events": ["list of events you want to subscribe to"]
+      "events": ["list of events you want to subscribe to"],
     }]
   }
 }

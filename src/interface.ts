@@ -6,5 +6,6 @@ export interface IWebhook {
 
 export interface IOptions {
     enabled: boolean;
+    explorerTx: string;
     webhooks: IWebhook[];
 }
