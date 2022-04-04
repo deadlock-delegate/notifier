@@ -32,9 +32,9 @@ export const discord = {
         return `
 **🚨 Changes in forging positions**
 **Moved out of a forging spot:**
-${newForgingDelegates.map((delegate) => `- ${delegate}\n`).join("")}
-**Moved into a forging spot:**
 ${oldForgingDelegates.map((delegate) => `- ${delegate}\n`).join("")}
+**Moved into a forging spot:**
+${newForgingDelegates.map((delegate) => `- ${delegate}\n`).join("")}
         `;
     },
     "delegate.registered": (delegate: string): string => {
