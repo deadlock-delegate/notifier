@@ -135,12 +135,12 @@ export default class Service {
                     return;
                 }
 
-                const messageData = await handlers[name](data);
+                const messageData: null | any[] = await handlers[name](data);
                 if (!messageData) {
                     return;
                 }
 
-                messageData.explorerTx = this.exlorerTxUrl;
+                messageData.push(this.exlorerTxUrl);
 
                 const requests: Promise<any>[] = [];
                 for (const webhook of webhooks) {
@@ -202,7 +202,7 @@ export default class Service {
     }: {
         delegate: string;
         transaction: Interfaces.ITransactionData;
-    }) {
+    }): Promise<any[]> {
         AppUtils.assert.defined<string>(transaction.senderPublicKey);
         const delPubKey = delegate.replace("+", "").replace("-", "");
         const delWallet = this.walletRepository.findByPublicKey(delPubKey);
@@ -217,7 +217,7 @@ export default class Service {
     }: {
         delegate: string;
         transaction: Interfaces.ITransactionData;
-    }) {
+    }): Promise<any[]> {
         AppUtils.assert.defined<string>(transaction.senderPublicKey);
         const delPubKey = delegate.replace("+", "").replace("-", "");
         const delWallet = this.walletRepository.findByPublicKey(delPubKey);
@@ -226,28 +226,28 @@ export default class Service {
         return [voterWallet.getAddress(), delWallet.getAttribute("delegate.username"), balance, transaction.id];
     }
 
-    private async forgerMissing(wallet: any) {
+    private async forgerMissing(wallet: any): Promise<any[]> {
         const delegateName = wallet.delegate.getAttribute("delegate.username");
         return [os.hostname(), delegateName];
     }
 
-    private async forgerFailed(error) {
+    private async forgerFailed(error): Promise<any[]> {
         return [os.hostname(), error];
     }
 
-    private async forgerStarted(data) {
+    private async forgerStarted(data): Promise<any[]> {
         return [os.hostname];
     }
 
-    private async blockForged(block: Interfaces.IBlock) {
+    private async blockForged(block: Interfaces.IBlock): Promise<any[]> {
         return [os.hostname(), block.data.id];
     }
 
-    private async roundCreated(activeDelegates: Contracts.State.Wallet[]) {
+    private async roundCreated(activeDelegates: Contracts.State.Wallet[]): Promise<any[]> {
         return [activeDelegates];
     }
 
-    private async activeDelegatesChanged(block: Interfaces.IBlock) {
+    private async activeDelegatesChanged(block: Interfaces.IBlock): Promise<any[] | null> {
         const previouslyActiveDelegates = LAST_ACTIVE_DELEGATES_CACHED;
         const latestDelegates = (await this.triggers.call("getActiveDelegates", {})) as Contracts.State.Wallet[];
         if (!latestDelegates) return [];
@@ -265,11 +265,11 @@ export default class Service {
         return [newDelegates, droppedOutDelegates];
     }
 
-    private async delegateRegistered(transaction: Interfaces.ITransactionData) {
+    private async delegateRegistered(transaction: Interfaces.ITransactionData): Promise<any[]> {
         return [transaction.asset?.delegate?.username];
     }
 
-    private async delegateResigned(transaction: Interfaces.ITransactionData) {
+    private async delegateResigned(transaction: Interfaces.ITransactionData): Promise<any[] | null> {
         const senderPublicKey = transaction.senderPublicKey;
         if (!senderPublicKey) return null;
         const wallet = this.walletRepository.findByPublicKey(senderPublicKey);
