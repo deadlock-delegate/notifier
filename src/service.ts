@@ -57,12 +57,12 @@ export default class Service {
     private readonly walletRepository!: Contracts.State.WalletRepository;
 
     private events = {};
-    private exlorerTxUrl: string = "";
+    private explorerTxUrl: string = "";
 
     public async listen(options: IOptions): Promise<void> {
         LAST_ACTIVE_DELEGATES_CACHED = await this.getActiveDelegates();
 
-        this.exlorerTxUrl = options.explorerTx;
+        this.explorerTxUrl = options.explorerTx;
 
         for (const webhook of options.webhooks) {
             for (const event of webhook.events) {
@@ -140,7 +140,7 @@ export default class Service {
                     return;
                 }
 
-                messageData.push(this.exlorerTxUrl);
+                messageData.push(this.explorerTxUrl);
 
                 const requests: Promise<any>[] = [];
                 for (const webhook of webhooks) {
