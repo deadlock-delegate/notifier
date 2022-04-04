@@ -135,11 +135,12 @@ export default class Service {
                     return;
                 }
 
-                data.explorerTx = this.exlorerTxUrl;
                 const messageData = await handlers[name](data);
                 if (!messageData) {
                     return;
                 }
+
+                messageData.explorerTx = this.exlorerTxUrl;
 
                 const requests: Promise<any>[] = [];
                 for (const webhook of webhooks) {
