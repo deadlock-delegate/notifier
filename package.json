@@ -1,19 +1,14 @@
 {
   "name": "@deadlock-delegate/notifier",
-  "version": "2.0.17",
+  "version": "2.0.19",
   "description": "Allows you to subscribe and be notified about core events ",
   "author": "deadock",
   "license": "MIT",
   "keywords": [
-    "core",
     "blockchain",
     "ark",
     "solar",
-    "crypto",
-    "dpos",
-    "logging",
-    "http",
-    "requests"
+    "broadcaster"
   ],
   "main": "dist/service-provider.js",
   "repository": {
@@ -33,8 +28,8 @@
     "clean": "del dist"
   },
   "dependencies": {
-    "@arkecosystem/core-kernel": "^3.0.0",
-    "@arkecosystem/crypto": "^3.0.0",
+    "@arkecosystem/core-kernel": "^3.2.0 || ^4.0.0-next.9",
+    "@arkecosystem/crypto": "^3.2.0 || ^4.0.0-next.9",
     "@types/node": "^16.9.1",
     "axios": "^0.21.4"
   }

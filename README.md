@@ -54,7 +54,7 @@ Before restarting your process, you need to add the plugin into the very end  `c
 
 Assuming you don't run testnet locally via docker:
 
-1. Clone this plugin into `plugins/` directory of the [core](https://github.com/ArkEcosystem/core/) project
+1. Clone this plugin into `plugins/` directory of the `core` project
 2. Add plugin to `app.json`, for testnet the file can be found in: `core/packages/core/bin/config/testnet/app.json`
 3. Go into the plugin's directory: `cd notifier`
 4. Build plugin: `yarn build`
@@ -100,6 +100,7 @@ Handlers for unticked events haven't been implemented yet. Feel free to make a c
 - [ ] transaction.forged
 - [ ] transaction.reverted
 - [x] activedelegateschanged - when active delegates change (voted out/in) (note: this is a custom event and does not existing in `core`!)
+- [x] voterbalancechanged:<delegate name> - when a specific delegates voter balance changes
 
 ## Credits
 

@@ -204,10 +204,18 @@ export default class Service {
         transaction: Interfaces.ITransactionData;
     }): Promise<any[]> {
         AppUtils.assert.defined<string>(transaction.senderPublicKey);
-        const delPubKey = delegate.replace("+", "").replace("-", "");
-        const delWallet = this.walletRepository.findByPublicKey(delPubKey);
+
+        const delIdentifier = delegate.replace("+", "").replace("-", "");
+        const pubKeyExists = this.walletRepository.hasByPublicKey(delIdentifier);
+        let delWallet: Contracts.State.Wallet;
+        if (pubKeyExists) {
+            delWallet = this.walletRepository.findByPublicKey(delIdentifier);
+        } else {
+            delWallet = this.walletRepository.findByUsername(delIdentifier);
+        }
+
         const voterWallet = this.walletRepository.findByPublicKey(transaction.senderPublicKey);
-        const balance = CryptoUtils.formatSatoshi(voterWallet.getBalance()).replace("DѦ", "ARK");
+        const balance = CryptoUtils.formatSatoshi(voterWallet.getBalance());
         return [voterWallet.getAddress(), delWallet.getAttribute("delegate.username"), balance, transaction.id];
     }
 
@@ -219,10 +227,18 @@ export default class Service {
         transaction: Interfaces.ITransactionData;
     }): Promise<any[]> {
         AppUtils.assert.defined<string>(transaction.senderPublicKey);
-        const delPubKey = delegate.replace("+", "").replace("-", "");
-        const delWallet = this.walletRepository.findByPublicKey(delPubKey);
+
+        const delIdentifier = delegate.replace("+", "").replace("-", "");
+        const pubKeyExists = this.walletRepository.hasByPublicKey(delIdentifier);
+        let delWallet: Contracts.State.Wallet;
+        if (pubKeyExists) {
+            delWallet = this.walletRepository.findByPublicKey(delIdentifier);
+        } else {
+            delWallet = this.walletRepository.findByUsername(delIdentifier);
+        }
+
         const voterWallet = this.walletRepository.findByPublicKey(transaction.senderPublicKey);
-        const balance = CryptoUtils.formatSatoshi(voterWallet.getBalance()).replace("DѦ", "ARK");
+        const balance = CryptoUtils.formatSatoshi(voterWallet.getBalance());
         return [voterWallet.getAddress(), delWallet.getAttribute("delegate.username"), balance, transaction.id];
     }
 
