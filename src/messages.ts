@@ -24,12 +24,12 @@ export const discord = {
     activedelegateschanged: (newForgingDelegates, oldForgingDelegates) => {
         if (newForgingDelegates.length === 1 && oldForgingDelegates.length === 1) {
             return `
-🚨 **Changes in active block producer rankings**
-🔃 Delegate **${newForgingDelegates[0]}** replaced **${oldForgingDelegates[0]}** as a block producer.
+🚨 **Changes in active block producers**
+🔃 **${newForgingDelegates[0]}** replaced **${oldForgingDelegates[0]}** as a block producer.
             `;
         }
         return `
-**🚨 Changes in active block producer rankings**
+**🚨 Changes in active block producers**
 **Moved out:**
 ${oldForgingDelegates.map((delegate) => `- ${delegate}\n`).join("")}
 **Moved in:**
@@ -69,7 +69,7 @@ export const slack = {
     },
     activedelegateschanged: (newActiveDelegates, oldActiveDelegates) => {
         return `
-*🚨 Changes in active block producer rankings*
+*🚨 Changes in active block producers*
 *Moved out:*
 ${oldActiveDelegates.map((delegate) => `- ${delegate}\n`).join("")}
 *Moved in:*
