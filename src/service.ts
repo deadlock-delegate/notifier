@@ -24,6 +24,7 @@ const VALID_EVENTS = [
     "wallet.vote",
     "wallet.unvote",
     "round.created",
+    "round.missed",
     "activedelegateschanged",
 ];
 
