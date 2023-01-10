@@ -1,6 +1,6 @@
 {
   "name": "@deadlock-delegate/notifier",
-  "version": "2.0.19",
+  "version": "2.0.20",
   "description": "Allows you to subscribe and be notified about core events ",
   "author": "deadock",
   "license": "MIT",
