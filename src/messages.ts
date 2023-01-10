@@ -25,7 +25,7 @@ export const discord = {
         if (newForgingDelegates.length === 1 && oldForgingDelegates.length === 1) {
             return `
 🚨 **Changes in active block producers**
-🔃 **${newForgingDelegates[0]}** replaced **${oldForgingDelegates[0]}** as a block producer.
+🔃 **${newForgingDelegates[0]}** replaced **${oldForgingDelegates[0]}** as an active block producer.
             `;
         }
         return `
